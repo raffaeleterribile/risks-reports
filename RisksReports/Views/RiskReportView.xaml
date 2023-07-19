@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:models="clr-namespace:RisksReports.Models"
+             x:Class="RisksReports.Views.RiskReportView"
+             Title="{Binding Title}"
+			 x:DataType="models:RiskReport">
+    <VerticalStackLayout Margin="20">
+		<Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, 20, Auto, Auto, Auto">
+			<Label VerticalOptions="Center">Title</Label>
+			<Entry Text="{Binding Title}" Grid.Column="1"/>
+			<Label VerticalOptions="Center" Grid.Row="1">Description</Label>
+			<Entry Text="{Binding Description}" Grid.Row="1" Grid.Column="1"/>
+			<Label VerticalOptions="Center" Grid.Row="2">Severity</Label>
+			<Picker Grid.Row="2" Grid.Column="1" ItemsSource="{Binding SeverityLevels, Source={RelativeSource AncestorType={x:Type Page}}}" SelectedItem="{Binding Severity}"/>
+			<Label VerticalOptions="Center" Grid.Row="3">Probability</Label>
+			<Picker Grid.Row="3" Grid.Column="1" ItemsSource="{Binding ProbabilityLevels, Source={RelativeSource AncestorType={x:Type Page}}}" SelectedItem="{Binding Probability}"/>
+
+			<Button Text="Save" HorizontalOptions="Center" WidthRequest="100"
+                    Clicked="OnSaveClicked"  Grid.Row="5" Grid.ColumnSpan="2"/>
+			<Button Text="Delete" HorizontalOptions="Center" WidthRequest="100"
+                    Clicked="OnDeleteClicked" Grid.Row="6" Grid.ColumnSpan="2"/>
+			<Button Text="Cancel" HorizontalOptions="Center" WidthRequest="100"
+                    Clicked="OnCancelClicked"  Grid.Row="7" Grid.ColumnSpan="2"/>
+		</Grid>
+    </VerticalStackLayout>
+</ContentPage>
